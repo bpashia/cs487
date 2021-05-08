@@ -1,0 +1,22 @@
+{
+  "implicitDependencies": {
+    "package.json": { "dependencies": "*", "devDependencies": "*" },
+    ".eslintrc.json": "*"
+  },
+  "affected": { "defaultBase": "master" },
+  "npmScope": "cs425-app",
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/workspace/tasks-runners/default",
+      "options": { "cacheableOperations": ["build", "lint", "test", "e2e"] }
+    }
+  },
+  "projects": {
+    "cs425-app": { "tags": [] },
+    "api": { "tags": [] },
+    "broc-ui": { "tags": [] },
+    "login": { "tags": [] },
+    "airline-interfaces": { "tags": [] },
+    "home": { "tags": [] }
+  }
+}

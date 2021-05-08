@@ -1,0 +1,26 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@broc-ui": ["libs/broc-ui/src/index.ts"],
+      "@login": ["libs/login/src/index.ts"],
+      "@airline/airline-interfaces": ["libs/airline-interfaces/src/index.ts"],
+      "@airline/api-lib": ["libs/api-lib/src/index.ts"],
+      "@airline/home": ["libs/home/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

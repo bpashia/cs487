@@ -1,0 +1,213 @@
+{
+  "version": 2,
+  "cli": { "defaultCollection": "@nrwl/react" },
+  "defaultProject": "cs425-app",
+  "generators": {
+    "@nrwl/react": {
+      "application": { "style": "scss", "linter": "eslint", "babel": true },
+      "component": { "style": "scss" },
+      "library": { "style": "scss", "linter": "eslint" }
+    }
+  },
+  "projects": {
+    "cs425-app": {
+      "root": "apps/cs425-app",
+      "sourceRoot": "apps/cs425-app/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/web:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/cs425-app",
+            "index": "apps/cs425-app/src/index.html",
+            "main": "apps/cs425-app/src/main.tsx",
+            "polyfills": "apps/cs425-app/src/polyfills.ts",
+            "tsConfig": "apps/cs425-app/tsconfig.app.json",
+            "assets": [
+              "apps/cs425-app/src/favicon.ico",
+              "apps/cs425-app/src/assets"
+            ],
+            "styles": ["apps/cs425-app/src/styles.scss"],
+            "scripts": [],
+            "webpackConfig": "@nrwl/react/plugins/webpack"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/cs425-app/src/environments/environment.ts",
+                  "with": "apps/cs425-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/web:dev-server",
+          "options": {
+            "buildTarget": "cs425-app:build",
+            "proxyConfig": "apps/cs425-app/proxy.conf.json"
+          },
+          "configurations": {
+            "production": { "buildTarget": "cs425-app:build:production" }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/cs425-app/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/cs425-app"],
+          "options": {
+            "jestConfig": "apps/cs425-app/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "api": {
+      "root": "apps/api",
+      "sourceRoot": "apps/api/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/api",
+            "main": "apps/api/src/main.ts",
+            "tsConfig": "apps/api/tsconfig.app.json",
+            "assets": ["apps/api/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/api/src/environments/environment.ts",
+                  "with": "apps/api/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/node:execute",
+          "options": { "buildTarget": "api:build" }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": { "lintFilePatterns": ["apps/api/**/*.ts"] }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/api"],
+          "options": {
+            "jestConfig": "apps/api/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "broc-ui": {
+      "root": "libs/broc-ui",
+      "sourceRoot": "libs/broc-ui/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/broc-ui/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/broc-ui"],
+          "options": {
+            "jestConfig": "libs/broc-ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "login": {
+      "root": "libs/login",
+      "sourceRoot": "libs/login/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": { "lintFilePatterns": ["libs/login/**/*.{ts,tsx,js,jsx}"] }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/login"],
+          "options": {
+            "jestConfig": "libs/login/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "airline-interfaces": {
+      "root": "libs/airline-interfaces",
+      "sourceRoot": "libs/airline-interfaces/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/airline-interfaces/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/airline-interfaces"],
+          "options": {
+            "jestConfig": "libs/airline-interfaces/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "home": {
+      "root": "libs/home",
+      "sourceRoot": "libs/home/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": { "lintFilePatterns": ["libs/home/**/*.{ts,tsx,js,jsx}"] }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/home"],
+          "options": {
+            "jestConfig": "libs/home/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    }
+  }
+}

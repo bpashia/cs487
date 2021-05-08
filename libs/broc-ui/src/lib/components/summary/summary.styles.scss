@@ -1,0 +1,16 @@
+.data-table {
+  display: inline-flex;
+  .column {
+    margin: 0 2rem 1rem 0;
+    .header {
+      color: rgba(0, 0, 0, 0.54);
+      font-size: 0.88rem;
+      line-height: 150%;
+    }
+    .data {
+      font-size: 1rem;
+      color: rgba(0, 0, 0, 1);
+      line-height: 150%;
+    }
+  }
+}
