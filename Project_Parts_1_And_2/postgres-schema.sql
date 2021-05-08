@@ -1,5 +1,3 @@
-Broc Pashia CS 425 Phase 2
-
 
 create table airport
 	("locIdentifier"	char(3) primary key not null, 
