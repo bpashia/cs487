@@ -43,7 +43,7 @@ export const FlightTable = ({ rows }: { rows: Connection[] }) => {
           <TableRow>
             <TableCell align="center">Flight</TableCell>
             <TableCell align="center">Price</TableCell>
-            <TableCell align="center">Clas</TableCell>
+            <TableCell align="center">Class</TableCell>
             <TableCell align="center">Number of Connections</TableCell>
           </TableRow>
         </TableHead>
