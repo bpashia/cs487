@@ -99,12 +99,6 @@ create table bookingFlight
      foreign key ("airlineCode", "flightNumber", "flightDate") references flight ("airlineCode","flightNumber", "flightDate")
     );
 
-insert into airport values ('MCI','Kansas City Airport','United States','Kansas');
-insert into customer values ('broc@test.com','Broc','Barling','Pashia','MCI');
-
-
-
-
 INSERT INTO airport ("locIdentifier", name, country, state) VALUES ('MCI', 'Kansas City Airport', 'United States', 'Kansas');
 INSERT INTO airport ("locIdentifier", name, country, state) VALUES ('MDW', 'Chicago Midway', 'United States', 'Illinois');
 INSERT INTO airport ("locIdentifier", name, country, state) VALUES ('ORD', 'Chicago Ohare', 'United States', 'Illinois');
