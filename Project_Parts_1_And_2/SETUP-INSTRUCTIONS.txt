@@ -1,0 +1,32 @@
+I created this app using nrwl and an environment I am familiar with from an internship 
+because I thought I could make a somewhat decent UI.
+
+I'm not sure if you have experience with apps of this type so it may be a bit tricky to run.
+This File will walk you through how to successfully run the app. Please email me with questions! bpashia@hawk.iit.edu
+
+Step One: clone my github repository from https://bitbucket.org/bpashia/cs425brocpashia/admin
+
+Step Two: Create a database
+    - I used postgres like the labs to perform the following operations
+    - Create a database named "Airline"
+    - In my project repo, there is a folder called Project_Parts_1_And_2. 
+      Open the file in this folder called cs425-app-sample-data.sql
+    - Run the sql scripts to create tables and populate sample data
+
+Step Three: Run the app
+    - open two terminal windows
+    - in both terminals, cd into the repository directory (cs425brocpashia)
+    - run yarn in the command line to install packages (simply type 'yarn' if installed. May have to install yarn)
+    - in the first terminal, run the comman "nx serve api"
+    - in the second terminal, just run "nx serve"
+
+Step four: Using the app
+    - go to localhost:4200 in browser
+    - the demo video will give an outline of the UI
+    - Enjoy!
+
+Thanks professor for the semester! :) 
+
+    
+
+
