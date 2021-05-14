@@ -4,8 +4,21 @@ import {
   CreditCard,
   Customer,
 } from '@airline/airline-interfaces';
-import { Delete, IconButton, Loading, Tooltip, Typography } from '@broc-ui';
-import { activeCustomer, customerAddresses, customerCreditCards } from '@login';
+import {
+  Delete,
+  Edit,
+  IconButton,
+  Loading,
+  Tooltip,
+  Typography,
+  useEditableCardApi,
+} from '@broc-ui';
+import {
+  activeCustomer,
+  customerAddresses,
+  customerCreditCards,
+  selectedCreditCard,
+} from '@login';
 
 import React from 'react';
 import { useAsync, useAsyncFn } from 'react-use';
@@ -20,9 +33,14 @@ export const CreditCardSummary = () => {
   const [currentActiveCustomer, setActiveCustomer] = useRecoilState<Customer>(
     activeCustomer
   );
+  const cardApi = useEditableCardApi();
   const [currentCustomerPayments, setCurrentCustomerPayments] = useRecoilState<
     CreditCard[]
   >(customerCreditCards);
+  const [
+    currentSelectedCreditCard,
+    setSelectedCreditCard,
+  ] = useRecoilState<CreditCard>(selectedCreditCard);
   const [creditCards, getCreditCards] = useAsyncFn<
     () => Promise<CreditCard[]>
   >(async () => {
@@ -53,6 +71,10 @@ export const CreditCardSummary = () => {
     },
     [currentActiveCustomer]
   );
+  const onEditClick = (creditCard: CreditCard) => {
+    setSelectedCreditCard(creditCard);
+    cardApi.toggleEditMode();
+  };
   return creditCards.loading ? (
     <Loading />
   ) : creditCards.value && creditCards.value.length ? (
@@ -68,6 +90,15 @@ export const CreditCardSummary = () => {
               <Delete />
             </IconButton>
           </Tooltip>
+          <Tooltip title="Edit">
+            <IconButton
+              onClick={() => {
+                onEditClick(creditCard);
+              }}
+            >
+              <Edit />
+            </IconButton>
+          </Tooltip>
           Credit Card ending in{' '}
           {String(creditCard.creditCardNumber).slice(
             String(creditCard.creditCardNumber).length - 5
@@ -76,6 +107,6 @@ export const CreditCardSummary = () => {
       ))}
     </>
   ) : (
-    <Typography>No existing addresses</Typography>
+    <Typography>No existing Credit Cards</Typography>
   );
 };

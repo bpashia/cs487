@@ -72,4 +72,18 @@ export class CreditCardController {
     );
     return apiSuccess(String(removed));
   }
+
+  @Put(':creditCardNumber')
+  async update(
+    @Param('creditCardNumber') creditCardNumber: number,
+    @Body() creditCard: { data: Partial<CreditCard> }
+  ): Promise<ApiResponse<CreditCard>> {
+    console.log('updating creditCard', { creditCardNumber, creditCard });
+    const saved = await this.creditCardService.update(
+      creditCardNumber,
+      creditCard.data
+    );
+
+    return apiSuccess(saved);
+  }
 }

@@ -6,13 +6,20 @@ import {
 } from '@airline/airline-interfaces';
 import {
   Delete,
+  Edit,
   IconButton,
   Loading,
   Snackbar,
   Tooltip,
   Typography,
+  useEditableCardApi,
 } from '@broc-ui';
-import { activeCustomer, customerAddresses, customerCreditCards } from '@login';
+import {
+  activeCustomer,
+  customerAddresses,
+  customerCreditCards,
+  selectedAddress,
+} from '@login';
 import { Alert } from '@material-ui/lab';
 
 import React from 'react';
@@ -26,11 +33,14 @@ export const AddressSummary = () => {
     currentCustomerAddresses,
     setCurrentCustomerAddresses,
   ] = useRecoilState<Address[]>(customerAddresses);
+  const [currentSelectedAddress, setSelectedAddress] = useRecoilState<Address>(
+    selectedAddress
+  );
   const [currentActiveCustomer, setActiveCustomer] = useRecoilState<Customer>(
     activeCustomer
   );
   const selectedCreditCards = useRecoilValue<CreditCard[]>(customerCreditCards);
-
+  const cardApi = useEditableCardApi();
   const [addresses, getAddresses] = useAsyncFn<
     () => Promise<Address[]>
   >(async () => {
@@ -70,6 +80,10 @@ export const AddressSummary = () => {
       deleteAddress(address.addressID);
     }
   };
+  const onEditClick = (address: Address) => {
+    setSelectedAddress(address);
+    cardApi.toggleEditMode();
+  };
   return addresses.loading ? (
     <Loading />
   ) : addresses.value && addresses.value.length ? (
@@ -83,6 +97,15 @@ export const AddressSummary = () => {
               }}
             >
               <Delete />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="Edit">
+            <IconButton
+              onClick={() => {
+                onEditClick(address);
+              }}
+            >
+              <Edit />
             </IconButton>
           </Tooltip>
           {address.streetAddress}, {address.city}, {address.state} {address.zip}

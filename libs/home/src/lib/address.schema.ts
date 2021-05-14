@@ -1,7 +1,8 @@
 import * as yup from 'yup';
-import { AddressRequest } from '@airline/airline-interfaces';
+import { Address, AddressRequest } from '@airline/airline-interfaces';
 
 const addressShape = {
+  addressID: yup.number().nullable(),
   email: yup.string().ensure().required(),
   streetAddress: yup.string().ensure().required(),
   city: yup.string().ensure().required(),
@@ -9,4 +10,4 @@ const addressShape = {
   zip: yup.string().ensure().required(),
 };
 
-export const addressSchema = yup.object<AddressRequest>().shape(addressShape);
+export const addressSchema = yup.object<Address>().shape(addressShape);

@@ -12,7 +12,9 @@ import {
 } from '@broc-ui';
 import { textField } from '@broc-ui';
 import { TextField } from 'formik-material-ui';
-import { AddressRequest } from '@airline/airline-interfaces';
+import { Address, AddressRequest } from '@airline/airline-interfaces';
+import { selectedAddress } from '@login';
+import { useRecoilState } from 'recoil';
 export const AddressFields = ({
   toggleEditMode,
 }: {
@@ -24,6 +26,9 @@ export const AddressFields = ({
     errors,
     values,
   } = useFormikContext<AddressRequest>();
+  const [currentSelectedAddress, setSelectedAddress] = useRecoilState<Address>(
+    selectedAddress
+  );
   return (
     <>
       {/* <div>{JSON.stringify(values,null,2)}</div> */}
@@ -62,7 +67,10 @@ export const AddressFields = ({
               variant="outlined"
               color="primary"
               disabled={isSubmitting}
-              onClick={toggleEditMode}
+              onClick={() => {
+                setSelectedAddress(null);
+                toggleEditMode();
+              }}
               startIcon={<CancelIcon />}
             >
               Cancel

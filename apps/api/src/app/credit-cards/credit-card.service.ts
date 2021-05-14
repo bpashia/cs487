@@ -51,6 +51,37 @@ export class CreditCardService {
   //   return result;
   // }
 
+  async update(
+    cardNumber: number,
+    creditCard: Partial<CreditCard>
+  ): Promise<CreditCard> {
+    const entity = await this.creditCardRepository.findOneOrFail({
+      creditCardNumber: cardNumber,
+      email: creditCard.email,
+    });
+
+    if (!entity) {
+      throw 'Credit Card not found';
+    }
+    console.log({ cardNumber, creditCard });
+    if (creditCard.creditCardNumber !== cardNumber) {
+      const deleted = await this.delete({
+        creditCardNumber: cardNumber,
+        email: creditCard.email,
+      });
+      console.log('Deleted creditCard in update');
+      const created = await this.insert({ ...entity, ...creditCard });
+      console.log('Created in update', { created });
+      return created;
+    }
+    const result = await this.creditCardRepository.save({
+      ...entity,
+      ...creditCard,
+    });
+
+    return result;
+  }
+
   async delete({
     creditCardNumber,
     email,

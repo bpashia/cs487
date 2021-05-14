@@ -61,3 +61,13 @@ export const selectedBookings = atom<Booking[]>({
   key: 'selectedBookings', // unique ID (with respect to other atoms/selectors)
   default: [], // default value (aka initial value)
 });
+
+export const selectedCreditCard = atom<CreditCard>({
+  key: 'selectedCreditCard', // unique ID (with respect to other atoms/selectors)
+  default: null, // default value (aka initial value)
+});
+
+export const selectedAddress = atom<Address>({
+  key: 'selectedAddress', // unique ID (with respect to other atoms/selectors)
+  default: null, // default value (aka initial value)
+});
