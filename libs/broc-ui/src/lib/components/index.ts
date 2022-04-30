@@ -12,6 +12,6 @@ export * from './stepper';
 export * from './summary';
 export * from './tabbed-card';
 export * from './brits-divider';
-export * from './flight-table';
-export * from './return-flight-table';
+// export * from './flight-table';
+export * from './conversation-table';
 export * from './display-date-time';

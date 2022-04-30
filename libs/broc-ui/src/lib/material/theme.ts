@@ -9,10 +9,11 @@ import { green } from '@material-ui/core/colors';
 export const theme = createMuiTheme({
   palette: {
     primary: {
-      main: green[900],
+      main: '#55BF80',
+      contrastText: '#ffffff',
     },
     secondary: {
-      main: green[900],
+      main: '#ffffff',
     },
     error: {
       main: red.A400,

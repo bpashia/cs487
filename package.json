@@ -1,5 +1,5 @@
 {
-  "name": "cs425-app",
+  "name": "cs487-app",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
@@ -47,6 +47,8 @@
     "crypto": "^1.0.1",
     "date-fns": "^2.21.2",
     "document-register-element": "1.13.1",
+    "draft-js": "^0.11.7",
+    "es6-shim": "^0.35.6",
     "formik": "^2.1.4",
     "formik-material-ui": "2.0.0-beta.1",
     "fs": "^0.0.1-security",
@@ -54,8 +56,8 @@
     "os": "^0.1.1",
     "path": "^0.12.7",
     "pg": "^8.6.0",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
     "react-number-format": "^4.5.5",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",

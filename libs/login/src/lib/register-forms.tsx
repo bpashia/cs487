@@ -4,35 +4,67 @@ import { useAsyncFn } from 'react-use';
 import { LoginFields } from './login-fields';
 import { Login } from './login.interfaces';
 import { loginSchema, registerSchema } from './login.schema';
-import { Address, Api } from '@airline/airline-interfaces';
-import { Customer } from '@airline/airline-interfaces';
+import { Api, User } from '@interfaces';
 import { Redirect } from 'react-router';
 import { Snackbar } from '@broc-ui';
 import { Alert } from '@material-ui/lab';
 import { useRecoilState } from 'recoil';
-import { activeCustomer, customerAddresses } from './active-customer.recoil';
 import { RegisterFields } from './register-fields';
+import { allUsers, selectedUser, tempId } from '@cs487-app/state';
+
+interface UserRegistration extends Omit<User, 'tags'> {
+  tags: string[];
+}
+
+function useOnSubmit(handleNext?: (...args: any) => void) {
+  const [currentSelectedUser, setCurrentSelectedUser] = useRecoilState(
+    selectedUser
+  );
+  const [currentAllUsers, setAllUsers] = useRecoilState(allUsers);
+  const registerUser = (newUser: User) => {
+    setAllUsers([...currentAllUsers, newUser]);
+  };
+
+  const [newTempId, setTempId] = useRecoilState<number>(tempId);
+
+  return async (values: UserRegistration, { setSubmitting }) => {
+    const newId = newTempId;
+    setTempId(newTempId + 1);
+    const toSubmit: User = {
+      ...values,
+      id: newId,
+      subscribedPosts: [],
+      createdAt: new Date(),
+      tags: values.tags?.length
+        ? values.tags.map((val) => ({ tagKeyword: val }))
+        : [],
+    };
+    registerUser(toSubmit);
+    setCurrentSelectedUser(toSubmit);
+    setSubmitting(false);
+  };
+}
 
 export const RegisterForm = () => {
   const registerInit = registerSchema.cast({});
-  const [currentActiveCustomer, setActiveCustomer] = useRecoilState(
-    activeCustomer
+  const [currentSelectedUser, setCurrentSelectedUser] = useRecoilState(
+    selectedUser
   );
-  const [result, registerCustomer] = useAsyncFn(
-    async (customer: Partial<Customer>) => {
-      const { data } = await Api.post<Customer, Customer>(
-        `api/local/customers`,
-        customer
-      );
-      return data;
-    },
-    []
-  );
-  const onSubmit = (values, actions) => {
-    registerCustomer(values);
-    setActiveCustomer(values);
-    actions.setSubmitting(false);
-  };
+
+  // const [result, registerCustomer] = useAsyncFn(
+  //   async (customer: Partial<Customer>) => {
+  //     const { data } = await Api.post<Customer, Customer>(
+  //       `api/local/customers`,
+  //       customer
+  //     );
+  //     return data;
+  //   },
+  //   []
+  // );
+
+  const onSubmit = useOnSubmit(() => {
+    //nothing
+  });
 
   // const [errorOpen, setErrorOpen] = React.useState<boolean>(false);
   // React.useEffect(() => {
@@ -47,7 +79,7 @@ export const RegisterForm = () => {
 
   return (
     <>
-      <Formik<Customer>
+      <Formik<UserRegistration>
         initialValues={registerInit}
         onSubmit={onSubmit}
         validationSchema={registerSchema}
@@ -57,7 +89,7 @@ export const RegisterForm = () => {
           <RegisterFields />
         </Form>
       </Formik>
-      {result.value ? <Redirect to="../home" /> : <div />}
+      {currentSelectedUser ? <Redirect to="../home" /> : <div />}
     </>
   );
 };

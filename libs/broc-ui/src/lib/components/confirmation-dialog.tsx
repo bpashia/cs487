@@ -97,7 +97,9 @@ export function ConfirmationDialog({
   text,
   handleClose,
   handleConfirm,
-  handleCancel = () => {},
+  handleCancel = function () {
+    //empty
+  },
 }: ConfirmationDialogProps) {
   const theme = useTheme();
   const classes = useStyles(theme);

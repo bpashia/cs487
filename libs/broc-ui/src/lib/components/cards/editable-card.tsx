@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Button, Edit, CancelIcon, Add } from '../../material';
+import { Button, Edit, CancelIcon, Add, Grid } from '../../material';
 import { BrsCard } from './card';
 import { Editable, useEditMode, useEditable } from './use-editable';
 import EditableCardProvider from './editable-card-context';
@@ -11,8 +11,10 @@ export function EditableCard({
   getContent,
   inEditMode,
   toggleEditMode,
-  Status,
+  status,
   setInEditMode,
+  additionalActions,
+  hideEdit,
 }: Editable) {
   const editMode = { inEditMode, setInEditMode, toggleEditMode };
   // React.useEffect(() => {
@@ -23,17 +25,37 @@ export function EditableCard({
       <BrsCard
         icon={icon}
         title={title}
-        Status={Status}
+        status={status}
         action={
-          inEditMode ? (
+          inEditMode || hideEdit ? (
             // <Button onClick={toggleEditMode} startIcon={<CancelIcon />}>
             //   Cancel
             // </Button>
-            <></>
+
+            <Grid container spacing={1}>
+              {additionalActions &&
+                additionalActions.length &&
+                additionalActions.map((button, index) => (
+                  <React.Fragment key={String(index)}>
+                    <Grid item>{button}</Grid>
+                  </React.Fragment>
+                ))}
+            </Grid>
           ) : (
-            <Button onClick={toggleEditMode} startIcon={<Add />}>
-              Add
-            </Button>
+            <Grid container spacing={1}>
+              {additionalActions &&
+                additionalActions.length &&
+                additionalActions.map((button, index) => (
+                  <React.Fragment key={String(index)}>
+                    <Grid item>{button}</Grid>
+                  </React.Fragment>
+                ))}
+              <Grid item>
+                <Button onClick={toggleEditMode} startIcon={<Edit />}>
+                  Edit
+                </Button>
+              </Grid>
+            </Grid>
           )
         }
         content={getContent()}

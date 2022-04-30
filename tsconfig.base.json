@@ -18,8 +18,13 @@
       "@broc-ui": ["libs/broc-ui/src/index.ts"],
       "@login": ["libs/login/src/index.ts"],
       "@airline/airline-interfaces": ["libs/airline-interfaces/src/index.ts"],
+      "@interfaces": ["libs/interfaces/src/index.ts"],
       "@airline/api-lib": ["libs/api-lib/src/index.ts"],
-      "@airline/home": ["libs/home/src/index.ts"]
+      "@airline/home": ["libs/home/src/index.ts"],
+      "@cs487-app/state": ["libs/state/src/index.ts"],
+      "@cs487-app/explore-page": ["libs/explore-page/src/index.ts"],
+      "@cs487-app/account-page": ["libs/account-page/src/index.ts"],
+      "@cs487-app/message-page": ["libs/message-page/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

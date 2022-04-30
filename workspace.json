@@ -1,7 +1,7 @@
 {
   "version": 2,
   "cli": { "defaultCollection": "@nrwl/react" },
-  "defaultProject": "cs425-app",
+  "defaultProject": "cs487-app",
   "generators": {
     "@nrwl/react": {
       "application": { "style": "scss", "linter": "eslint", "babel": true },
@@ -10,25 +10,25 @@
     }
   },
   "projects": {
-    "cs425-app": {
-      "root": "apps/cs425-app",
-      "sourceRoot": "apps/cs425-app/src",
+    "cs487-app": {
+      "root": "apps/cs487-app",
+      "sourceRoot": "apps/cs487-app/src",
       "projectType": "application",
       "targets": {
         "build": {
           "executor": "@nrwl/web:build",
           "outputs": ["{options.outputPath}"],
           "options": {
-            "outputPath": "dist/apps/cs425-app",
-            "index": "apps/cs425-app/src/index.html",
-            "main": "apps/cs425-app/src/main.tsx",
-            "polyfills": "apps/cs425-app/src/polyfills.ts",
-            "tsConfig": "apps/cs425-app/tsconfig.app.json",
+            "outputPath": "dist/apps/cs487-app",
+            "index": "apps/cs487-app/src/index.html",
+            "main": "apps/cs487-app/src/main.tsx",
+            "polyfills": "apps/cs487-app/src/polyfills.ts",
+            "tsConfig": "apps/cs487-app/tsconfig.app.json",
             "assets": [
-              "apps/cs425-app/src/favicon.ico",
-              "apps/cs425-app/src/assets"
+              "apps/cs487-app/src/favicon.ico",
+              "apps/cs487-app/src/assets"
             ],
-            "styles": ["apps/cs425-app/src/styles.scss"],
+            "styles": ["apps/cs487-app/src/styles.scss"],
             "scripts": [],
             "webpackConfig": "@nrwl/react/plugins/webpack"
           },
@@ -36,8 +36,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "apps/cs425-app/src/environments/environment.ts",
-                  "with": "apps/cs425-app/src/environments/environment.prod.ts"
+                  "replace": "apps/cs487-app/src/environments/environment.ts",
+                  "with": "apps/cs487-app/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -60,24 +60,24 @@
         "serve": {
           "executor": "@nrwl/web:dev-server",
           "options": {
-            "buildTarget": "cs425-app:build",
-            "proxyConfig": "apps/cs425-app/proxy.conf.json"
+            "buildTarget": "cs487-app:build",
+            "proxyConfig": "apps/cs487-app/proxy.conf.json"
           },
           "configurations": {
-            "production": { "buildTarget": "cs425-app:build:production" }
+            "production": { "buildTarget": "cs487-app:build:production" }
           }
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/cs425-app/**/*.{ts,tsx,js,jsx}"]
+            "lintFilePatterns": ["apps/cs487-app/**/*.{ts,tsx,js,jsx}"]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/cs425-app"],
+          "outputs": ["coverage/apps/cs487-app"],
           "options": {
-            "jestConfig": "apps/cs425-app/jest.config.js",
+            "jestConfig": "apps/cs487-app/jest.config.js",
             "passWithNoTests": true
           }
         }
@@ -204,6 +204,88 @@
           "outputs": ["coverage/libs/home"],
           "options": {
             "jestConfig": "libs/home/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "state": {
+      "root": "libs/state",
+      "sourceRoot": "libs/state/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": { "lintFilePatterns": ["libs/state/**/*.{ts,tsx,js,jsx}"] }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/state"],
+          "options": {
+            "jestConfig": "libs/state/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "explore-page": {
+      "root": "libs/explore-page",
+      "sourceRoot": "libs/explore-page/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/explore-page/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/explore-page"],
+          "options": {
+            "jestConfig": "libs/explore-page/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "account-page": {
+      "root": "libs/account-page",
+      "sourceRoot": "libs/account-page/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/account-page/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/account-page"],
+          "options": {
+            "jestConfig": "libs/account-page/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "message-page": {
+      "root": "libs/message-page",
+      "sourceRoot": "libs/message-page/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/message-page/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/message-page"],
+          "options": {
+            "jestConfig": "libs/message-page/jest.config.js",
             "passWithNoTests": true
           }
         }

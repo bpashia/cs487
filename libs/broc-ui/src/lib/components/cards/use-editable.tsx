@@ -1,4 +1,5 @@
 import React from 'react';
+import { ReactNodeArray } from 'react-transition-group/node_modules/@types/react';
 
 import { Button, Edit, CancelIcon } from '../../material';
 
@@ -8,15 +9,15 @@ export function useBoolean(
   const [state, setState] = React.useState(initialState);
 
   const toggle = React.useCallback(() => {
-    setState(prev => !prev);
+    setState((prev) => !prev);
   }, [setState]);
 
   return [
     React.useMemo(() => state, [state]),
     {
       set: setState,
-      toggle
-    }
+      toggle,
+    },
   ];
 }
 
@@ -29,12 +30,12 @@ export interface EditMode {
 export function useEditMode(initialInEditMode = false): EditMode {
   const [
     inEditMode,
-    { set: setInEditMode, toggle: toggleEditMode }
+    { set: setInEditMode, toggle: toggleEditMode },
   ] = useBoolean(initialInEditMode);
   return {
     inEditMode,
     setInEditMode,
-    toggleEditMode
+    toggleEditMode,
   };
 }
 
@@ -46,8 +47,10 @@ export interface Editable extends EditMode {
   key: string;
   title: string;
   icon?: React.ReactNode;
-  Status?: () => React.ReactNode;
+  status?: () => React.ReactNode;
   getContent: () => React.ReactNode;
+  additionalActions?: ReactNodeArray;
+  hideEdit?: boolean;
 }
 
 export interface EditableConfig<
@@ -104,6 +107,6 @@ export function useEditable<
     inEditMode,
     setInEditMode,
     toggleEditMode,
-    getContent
+    getContent,
   };
 }

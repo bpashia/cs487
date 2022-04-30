@@ -67,7 +67,7 @@ interface BrsCardProps {
   action?: ReactNode;
   content: ReactNode;
   subheader?: string | ReactNode;
-  Status?: () => ReactNode;
+  status?: () => ReactNode;
 }
 
 export function BrsCard({
@@ -76,7 +76,7 @@ export function BrsCard({
   action,
   content,
   subheader,
-  Status,
+  status,
 }: BrsCardProps) {
   const theme = useTheme();
   const classes = useStyles(theme);
@@ -96,13 +96,17 @@ export function BrsCard({
           action={action}
         />
         {!!widthCheck && <br />}
-        {!!Status && (
-          <Box marginTop={-5.5} marginBottom={4} marginLeft={widthCheck && 8}>
-            <Typography align={!widthCheck ? 'center' : 'left'}>
-              {Status()}
-            </Typography>
+        {!!status && (
+          <Box marginTop={-5.5} marginBottom={4}>
+            <Box marginLeft={widthCheck && 8}>
+              <Typography align={!widthCheck ? 'center' : 'left'}>
+                {status()}
+              </Typography>
+            </Box>
+            <Divider orientation="horizontal" style={{ width: '100%' }} />
           </Box>
         )}
+        {/* <Divider orientation="horizontal" style={{ width: '100%' }} /> */}
         <BrsCardContent>{content}</BrsCardContent>
       </Card>
     </div>

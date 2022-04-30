@@ -32,7 +32,12 @@ export const LoginFields = () => {
               <FormRow>
                 <FormItem xs={12} md={12} lg={12}>
                   <Box paddingLeft={5} paddingRight={5}>
-                    <Field {...textField} name="email" label="Customer Email" />
+                    <Field {...textField} name="email" label="Email" />
+                  </Box>
+                </FormItem>
+                <FormItem xs={12} md={12} lg={12}>
+                  <Box paddingLeft={5} paddingRight={5}>
+                    <Field {...textField} name="password" label="Password" />
                   </Box>
                 </FormItem>
               </FormRow>

@@ -4,7 +4,7 @@
     ".eslintrc.json": "*"
   },
   "affected": { "defaultBase": "master" },
-  "npmScope": "cs425-app",
+  "npmScope": "cs487-app",
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
@@ -12,11 +12,15 @@
     }
   },
   "projects": {
-    "cs425-app": { "tags": [] },
+    "cs487-app": { "tags": [] },
     "api": { "tags": [] },
     "broc-ui": { "tags": [] },
     "login": { "tags": [] },
     "airline-interfaces": { "tags": [] },
-    "home": { "tags": [] }
+    "home": { "tags": [] },
+    "state": { "tags": [] },
+    "explore-page": { "tags": [] },
+    "account-page": { "tags": [] },
+    "message-page": { "tags": [] }
   }
 }
